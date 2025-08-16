@@ -1,7 +1,6 @@
 # Opportune
 
 Opportune is a **full-stack web application** built with **React (frontend)** and **Express.js (backend)**.  
-It is designed to [ _briefly describe your app’s purpose, e.g., “connect people with new opportunities, manage tasks, or showcase projects”_].
 
 ---
 
