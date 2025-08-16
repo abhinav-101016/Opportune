@@ -332,6 +332,8 @@ app.get('/applydata',authenticate,async (req,res)=>{
 
 
 
+
+
 app.listen(1200,()=>{
     console.log("Server running on port 1200")
 })
