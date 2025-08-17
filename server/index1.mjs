@@ -323,7 +323,9 @@ app.get('/browsejobs',authenticate,async (req,res)=>{
 })
 app.get('/applydata',authenticate,async (req,res)=>{
     const jobId=req.query.jobId
+   
     const jobData=await JobData.findById(jobId)
+    
     return res.status(200).json(jobData)
 })
 
