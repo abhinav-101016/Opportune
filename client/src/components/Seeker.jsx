@@ -41,32 +41,36 @@ function Seeker() {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        // Convert input string to array before sending
-        const skillsArray = skillsInput.split(',').map(skill => skill.trim()).toLowerCase().filter(skill => skill !== '');
+    
+    const skillsArray = skillsInput
+        .split(',')
+        .map(skill => skill.trim().toLowerCase())
+        .filter(skill => skill !== '');
 
-        const finalData = {
-            ...seekerData,
-            skills: skillsArray
-        };
-
-        const res = await fetch('http://localhost:1200/seeker', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(finalData)
-        });
-
-        const result = await res.json();
-        
-        if (res.ok) {
-            setMessage('Profile Completed');
-        } else {
-            setMessage('Something Went Wrong maybe');
-            console.log(res)
-        }
+    const finalData = {
+        ...seekerData,
+        skills: skillsArray
     };
+
+    const res = await fetch('http://localhost:1200/seeker', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalData)
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+        setMessage('Profile Completed');
+    } else {
+        setMessage('Something Went Wrong maybe');
+        console.log(res);
+    }
+};
+
 
     return (
         <div className="h-screen w-screen bg-emerald-200 flex flex-col justify-center items-center">
