@@ -144,6 +144,16 @@ app.get('/dashboard', authenticate, async (req, res) => {
       const posterData = await Poster.findOne({ user: userId });
       res.status(200).json({ name: personData.name, email: personData.email, mob: personData.mob, role: "Recruiter", membersince: personData.createdAt, organisation: posterData?.organisation || "", position: posterData?.position || "", industry: posterData?.industry || "", jobposted: jobPosted });
     }
+    else if(personData.role==="seeker"){
+      const jobsApplied=await Application.countDocuments({personId:userId});
+      const seekerData=await Seeker.findOne({user:userId});
+      
+
+      res.status(200).json({name:personData.name,email:personData.email,mob:personData.mob,role:"Seeker",membersince:personData.createdAt,experience:seekerData.experience||" ",
+        jobsApplied:jobsApplied || " ",skills:seekerData.skills || []
+      })
+
+    }
   } catch (error) {
     res.status(500).json({ message: "Something Went Wrong", error: error.message });
   }

@@ -73,9 +73,9 @@ function DeleteProfile(){
 
      return(
 
-        <div className="h-screen w-screen bg-emerald-200 flex flex-col justify-center items-center">
+        <div className="h-screen w-screen bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col justify-center items-center">
             <h2 className="pb-4 text-2xl font-bold text-blue-500">Delete Profile</h2>
-            <div className="min-h-64 min-w-[45%] bg-emerald-100 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            <div className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
        
 
                  
@@ -88,7 +88,7 @@ function DeleteProfile(){
                  <p className="m-auto mb-4 text-2xl font-bold text-blue-600">{message}</p>
             </div>
            
-             <p className=" max-w-[45%] text-m font-bold text-center pt-4 text-red-500" >
+             <p className=" max-w-[45%] text-m font-bold text-center pt-4 text-[#f4120a] " >
                 ⚠️ Once you delete your profile, all your data including posted jobs will be
                  permanently removed. This action is irreversible.
                  </p>

@@ -21,7 +21,7 @@ const seekerSchema=new mongoose.Schema({
     "name":{type:String,required:true,trim:true},
      "user": { type: mongoose.Schema.Types.ObjectId, ref: 'Person', required: true, unique: true },
     "experience":{type:Number,min: 0,max: 50,required:true},
-    "skills":{type:[String],required:true},
+    "skills":{type:[String],required:true, default:[]},
 
 
 })

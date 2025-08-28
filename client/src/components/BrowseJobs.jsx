@@ -64,7 +64,7 @@ function BrowseJobs(){
    
    
    return (
-  <div className="min-h-screen w-full bg-emerald-200 flex justify-center px-4 py-8">
+  <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center px-4 py-8">
     {jobs.length === 0 ? (
       <div>
         <h3 className="pt-32 text-center font-semibold text-blue-600 text-2xl md:text-4xl">
@@ -79,7 +79,7 @@ function BrowseJobs(){
           {jobs.map((job, index) => (
             <div
               key={index}
-              className="bg-emerald-100 rounded-lg shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out flex flex-col gap-y-6 p-4"
+              className="bg-white rounded-lg shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out flex flex-col gap-y-6 p-4"
             >
               
               <div className="flex justify-between items-start gap-x-6">

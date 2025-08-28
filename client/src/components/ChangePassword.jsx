@@ -93,15 +93,15 @@ function ChangePassword(){
     }
    if (!isUserLoaded) {
         return (
-            <div className="h-screen w-screen bg-emerald-200 flex justify-center items-center">
+            <div className="h-screen w-screen bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center items-center">
                 <p className="text-xl font-semibold">Loading...</p>
             </div>
         );
     }
     return(
-         <div className="h-screen w-screen bg-emerald-200 flex flex-col justify-center items-center">
+         <div className="h-screen w-screen bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col justify-center items-center">
             <h2 className="pb-4 text-2xl font-bold text-blue-500">Password Change</h2>
-            <div  className="min-h-64 min-w-[45%] bg-emerald-100 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            <div  className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
                  <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray gap-2">
                     <label>Old Password</label>
                     <input type="password" onChange={handleChange} name="oldPassword" value={passwordData.oldPassword} required className="border-blue-300 border-2 p-1"></input>

@@ -42,14 +42,14 @@ useEffect(() => {
    
 
     return(
-        <header className="w-[100vw] h-[15vh] bg-emerald-200 flex justify-between items-center ">
-            <div className="w-[25vw] h-[100%] bg-emerald-200 flex justify-center items-center">
+        <header className="w-[100vw] h-[15vh] bg-gradient-to-r from-blue-200 via-indigo-200 to-purple-200  shadow-lg flex justify-between items-center ">
+            <div className="w-[25vw] h-[100%]   flex justify-center items-center">
                  <img
           src="\images\opportuneLogo.png"alt="Opportune logo"className="h-48 object-contain"/>
 
                 
             </div>
-            <div className="w-[55vw] h-[100%] hidden lg:block bg-emerald-200">
+            <div className="w-[55vw] h-[100%] hidden lg:block ">
                 <ul className=" flex mt-10 justify-evenly font-medium text-[20px]">
                     <li><NavLink to='/'className={({ isActive }) =>
     `relative px-2 py-1 transition-all duration-300 
@@ -78,7 +78,7 @@ useEffect(() => {
 
 
     {isLoggedIn?<div className={` flex flex-col justify-center items-start gap-2 rounded-lg shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out
-      text-[14px]  z-10 ${open ? 'h-80 min-w-32 rounded-md bg-emerald-100' : 'min-h-8 min-w-32 bg-emerald-100 rounded-md'}`}
+      text-[14px]  z-10 ${open ? 'h-80 min-w-32 rounded-md bg-white' : 'min-h-8 min-w-32 bg-radial-[at_45%_50%] from-[#64e7e1] to-[#0db9c5] rounded-md'}`}
 ><div className="flex justify-between items-center w-[80%]  my-1 mx-2"><div className="flex flex-col text-gray-700">{name&&<NavLink to='dashboard'>{name.split(" ")[0].toUpperCase()}</NavLink>}
   <p>{role.charAt(0).toUpperCase() + role.slice(1)}</p></div><svg   onClick={()=>{setOpen(prev=>!prev)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={` cursor-pointer size-4 ${open?"rotate-x-180":"rotate-0"}`}>
   <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -122,9 +122,9 @@ useEffect(() => {
   <span className={`h-0.5 bg-black transition-all duration-300 ${open1 ? '-rotate-45 -translate-y-2' : ''}`}></span>
 </div>
 {open1 && (
-  <div className="absolute top-[12vh] right-0 w-full bg-emerald-100 flex flex-col items-center gap-4 py-6 transition-all duration-300 z-10 lg:hidden">
+  <div className="absolute top-[12vh] right-0 w-full bg-white flex flex-col items-center gap-4 py-6 transition-all duration-300 z-10 lg:hidden">
     <NavLink to='/' className={`text-lg font-semibold text-gray-700`}>Home</NavLink>
-    {((!isLoggedIn)||(role==="seeker")) && <NavLink to='/browse' className="text-lg font-semibold text-gray-700">Browse Jobs</NavLink>}
+    {((!isLoggedIn)||(role==="seeker")) && <NavLink to='/browsejobs' className="text-lg font-semibold text-gray-700">Browse Jobs</NavLink>}
     {((!isLoggedIn)||(role==="poster")) && <NavLink to='/postajob' className="text-lg font-semibold text-gray-700">Post a Job</NavLink>}
      {isLoggedIn && <NavLink to='/dashboard' className="text-lg font-semibold text-gray-700">Dashboard</NavLink>}
     {isLoggedIn && <NavLink to='/changepassword' className="text-lg font-semibold text-gray-700">Change Password</NavLink>}

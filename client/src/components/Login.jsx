@@ -57,16 +57,16 @@ async function handleLogin(e) {
 
 
     return(
-        <div className="h-screen w-screen bg-emerald-200 flex flex-col justify-center items-center">
+        <div className="h-screen w-screen  flex flex-col justify-center bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] items-center bg-cover "  >
             <h2 className="pb-4 text-2xl font-bold text-blue-500">Login</h2>
-            <div  className="min-h-64 min-w-[45%] bg-emerald-100 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            <div  className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-2xl hover:shadow-4xl transition-shadow duration-300">
        
             <form onSubmit={handleLogin} className="flex flex-col p-12 font-medium text-gray gap-2">
                 <label>Email or Mobile Number</label>
                 <input type="text" value={loginData.identifier} name="identifier" required onChange={handleChange} className="border-blue-300 border-2 p-1"></input>
                 <label>Password</label>
                 <input type="password" name="password" value={loginData.password} required onChange={handleChange} className="border-blue-300 border-2 p-1"></input>
-                <button type="submit" className="mt-2 m-auto w-[30%] h-8 bg-blue-500  text-white font-semibold rounded-md shadow-md transition-all">Log In</button>
+                <button type="submit" className="mt-2 m-auto w-[30%] h-8 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all">Log In</button>
             </form>
            
 

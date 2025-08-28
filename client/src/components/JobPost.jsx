@@ -215,9 +215,9 @@ function JobPost(){
         </div>
     )*/
    return (
-  <div className="min-h-screen w-full bg-emerald-200 flex flex-col justify-center items-center py-8 px-4">
+  <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col justify-center items-center py-8 px-4">
     <h2 className="pb-6 text-3xl font-bold text-blue-500">Create A Job</h2>
-    <div className="w-full max-w-3xl bg-emerald-100 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+    <div className="w-full max-w-3xl bg-white flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
       <form onSubmit={handleSubmit} className="flex flex-col p-10 gap-y-4 text-gray-700">
         <div className="flex flex-col gap-1">
           <label>Job Title</label>
