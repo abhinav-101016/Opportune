@@ -10,7 +10,7 @@ Opportune is a **full-stack web application** built with **React (frontend)** an
 - RESTful endpoints for data handling
 - Environment-based configuration using `.env`
 - Secure handling of tokens and secrets
-- Feature to add resume when applying for the job
+- Feature to add resume when applying for the jobs
 
 ---
 
