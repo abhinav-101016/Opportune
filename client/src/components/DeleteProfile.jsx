@@ -73,19 +73,19 @@ function DeleteProfile(){
 
      return(
 
-        <div className="h-screen w-screen bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col justify-center items-center">
-            <h2 className="pb-4 text-2xl font-bold text-blue-500">Delete Profile</h2>
-            <div className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <div className="h-screen w-screen bg-gray-100 flex flex-col justify-center items-center">
+            <h2 className="pb-4 text-2xl font-bold text-gray-700">Delete Profile</h2>
+            <div className="min-h-64 min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
        
 
                  
 
                 <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray gap-2">
                     <label>Enter Your Password</label>
-                    <input type="password" onChange={handleChange} required name="password" value={password} className="border-blue-300 border-2 p-1"></input>
-                    <button type="submit" className="mt-2 m-auto w-[30%] h-8 bg-blue-500  text-white font-semibold rounded-md shadow-md transition-all">Delete Profile</button>
+                    <input type="password" onChange={handleChange} required name="password" value={password} className="border-gray-300 border-2 p-1"></input>
+                    <button type="submit" className="mt-2 m-auto w-[30%] h-8 bg-[#f4120a] hover:bg-gray-100 hover:text-[#f4120a]  text-white font-semibold rounded-md shadow-md transition-all">Delete Profile</button>
                 </form>
-                 <p className="m-auto mb-4 text-2xl font-bold text-blue-600">{message}</p>
+                 <p className="m-auto mb-4 text-2xl font-bold text-gray-700">{message}</p>
             </div>
            
              <p className=" max-w-[45%] text-m font-bold text-center pt-4 text-[#f4120a] " >

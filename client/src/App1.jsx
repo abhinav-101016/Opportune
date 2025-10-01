@@ -16,6 +16,8 @@ import Dashboard from "./components/Dashboard";
 import DeleteProfile from "./components/DeleteProfile";
 import BrowseJobs from "./components/BrowseJobs";
 import Apply from "./components/Apply";
+import JobsPosted from "./components/JobsPosted";
+import Applications from "./components/Applications";
 
 
 const App1=()=>{
@@ -48,6 +50,8 @@ const App1=()=>{
                 <Route path="/deleteprofile" element={<DeleteProfile/>}/>
                 <Route path="/browsejobs" element={<BrowseJobs/>}/>
                 <Route path="/apply" element={<Apply/>}/>
+                <Route path="/jobsposted" element={<JobsPosted/>}/>
+                <Route path="/applications" element={<Applications/>}/>
                 
             </Routes>
             </LoginProvider>

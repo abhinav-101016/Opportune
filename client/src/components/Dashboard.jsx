@@ -172,7 +172,7 @@ import { NavLink, useNavigate } from "react-router-dom"
     
 
   
-    return(<div className="min-h-screen w-[100vw] bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col gap-y-32 justify-center items-center">
+    return(<div className="min-h-screen w-[100vw] bg-gray-100 flex flex-col gap-y-32 justify-center items-center">
         <h2 className="mt-[-14px] font-bold text-5xl text-gray-700">Dashboard</h2>
         <h3 className="font-bold text-5xl text-gray-700">{message}</h3>
 
@@ -180,9 +180,9 @@ import { NavLink, useNavigate } from "react-router-dom"
         
         
         <div className="max-h-[75%] max-w-[80%] grid  grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-white min-h-[45vh] min-w-[25vw] rounded-lg shadow-md hover:shadow-2xl  transform hover:scale-105 transition duration-300 ease-in-out flex 
+            <div className="bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 min-h-[45vh] min-w-[25vw] rounded-lg shadow-md hover:shadow-2xl  transform hover:scale-105 transition duration-300 ease-in-out flex 
         flex-col items-center gap-y-12">
-                <h3 className="text-center pt-4 text-2xl font-semibold">Personal Details</h3>
+                <h3 className="text-center text-[#03a9f4] pt-4 text-2xl font-semibold">Personal Details</h3>
                 <div className="grid grid-cols-2 gap-x-2 font-semibold">
                 <p className="text-[10px] md:text-sm  p-2 ml-5">Name: {posterData.name.toUpperCase()}</p>
                 <p  className="text-[10px] md:text-sm p-2 ml-5">Role: {posterData.role}</p>
@@ -197,8 +197,8 @@ import { NavLink, useNavigate } from "react-router-dom"
 
             </div>
              
-              <div className="bg-white min-h-[40vh] min-w-[25vw] rounded-lg shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out ">
-                <h3 className="text-center pt-4 text-2xl font-semibold">Manage Account</h3>
+              <div className="bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 min-h-[40vh] min-w-[25vw] rounded-lg shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out ">
+                <h3 className="text-center pt-4 text-2xl text-[#03a9f4] font-semibold">Manage Account</h3>
                 <div className="flex flex-col justify-center items-center gap-y-4 pt-14">
                 <div className=" cursor-pointer" onClick={handleEdit}>Edit Profile</div>
                 <div><NavLink to="/changepassword">Change Password</NavLink></div>

@@ -1,4 +1,10 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({path:path.resolve("./server/.env")});
+
+const jwtSecret=process.env.JWT_SECRET;
 
 const authenticate=(req,res,next)=>{
 
@@ -11,7 +17,7 @@ const authenticate=(req,res,next)=>{
         return res.status(401).json({message:"Token not found"});
 
     }
-    jwt.verify(token,"fhdhdhdhehe",(err,user)=>{
+    jwt.verify(token,jwtSecret,(err,user)=>{
         if(err){
             return res.status(403).json({message:"Invalid or expired token"})
         }

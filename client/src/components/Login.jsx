@@ -57,21 +57,21 @@ async function handleLogin(e) {
 
 
     return(
-        <div className="h-screen w-screen  flex flex-col justify-center bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] items-center bg-cover "  >
-            <h2 className="pb-4 text-2xl font-bold text-blue-500">Login</h2>
-            <div  className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-2xl hover:shadow-4xl transition-shadow duration-300">
+        <div className="h-screen w-screen  flex flex-col justify-center bg-gray-100 items-center bg-cover "  >
+            <h2 className="pb-4 text-3xl font-medium text-gray-700">Login</h2>
+            <div  className="min-h-64 max-w-[55%] sm:min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300">
        
-            <form onSubmit={handleLogin} className="flex flex-col p-12 font-medium text-gray gap-2">
+            <form onSubmit={handleLogin} className="flex flex-col p-12 text-sm sm:text-lg font-medium text-gray-900 gap-4">
                 <label>Email or Mobile Number</label>
-                <input type="text" value={loginData.identifier} name="identifier" required onChange={handleChange} className="border-blue-300 border-2 p-1"></input>
+                <input type="text" value={loginData.identifier} name="identifier" required onChange={handleChange} className="border-gray-400 border-1  p-1 rounded"></input>
                 <label>Password</label>
-                <input type="password" name="password" value={loginData.password} required onChange={handleChange} className="border-blue-300 border-2 p-1"></input>
-                <button type="submit" className="mt-2 m-auto w-[30%] h-8 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all">Log In</button>
+                <input type="password" name="password" value={loginData.password} required onChange={handleChange} className="border-gray-400 border-1 p-1 rounded"></input>
+                <button type="submit" className="mt-2 m-auto w-[80%] sm:w-[30%] h-10 text-lg bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4]   text-white font-semibold rounded-md shadow-md transition-all">Log In</button>
             </form>
            
 
             
-           <p className="m-auto mb-4 text-2xl font-bold text-blue-600">{message}</p>
+           <p className="m-auto mb-4  font-bold  text:xl sm:text-2xl text-gray-700">{message}</p>
            </div>
         </div>
 

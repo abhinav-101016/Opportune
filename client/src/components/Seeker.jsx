@@ -73,17 +73,17 @@ function Seeker() {
 
 
     return (
-        <div className="h-screen w-screenbg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col justify-center items-center">
-            <h2 className="pb-4 text-2xl font-bold text-blue-500">Complete Profile</h2>
-            <div className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray gap-2">
+        <div className="h-screen w-screen bg-gray-100 flex flex-col justify-center items-center">
+            <h2 className="pb-4 text-2xl font-medium text-gray-700">Complete Profile</h2>
+            <div className="min-h-64 min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray-900 gap-3">
                     <label>Experience (yrs)</label>
                     <input
                         type="text"
                         name="experience"
                         value={seekerData.experience}
                         onChange={handleChange}
-                        className="border-blue-300 border-2 p-1"
+                        className="border-gray-400 border-1 p-1"
                     />
 
                     <label>Skills (comma-separated)</label>
@@ -93,17 +93,17 @@ function Seeker() {
                         value={skillsInput}
                         onChange={handleChange}
                         placeholder="e.g. Graphic Design, Photography"
-                        className="border-blue-300 border-2 p-1"
+                        className="border-gray-400 border-1 p-1"
                     />
 
                     <button
                         type="submit"
-                        className="mt-2 m-auto w-[30%] h-8 bg-blue-500 text-white font-semibold rounded-md shadow-md transition-all"
+                        className="  mt-2 m-auto sm:w-[30%] h-8  w-[75%] md:h-10 bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4]  text-white font-semibold rounded-md shadow-md transition-all"
                     >
                         Submit
                     </button>
                 </form>
-                <p className="m-auto mb-4 text-2xl font-bold text-blue-600">{message}</p>
+                <p className="m-auto mb-4  font-bold  text:xl sm:text-2xl text-gray-700">{message}</p>
             </div>
         </div>
     );

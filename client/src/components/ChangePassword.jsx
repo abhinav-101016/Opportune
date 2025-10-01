@@ -93,28 +93,28 @@ function ChangePassword(){
     }
    if (!isUserLoaded) {
         return (
-            <div className="h-screen w-screen bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center items-center">
+            <div className="h-screen w-screen bg-gray-100 flex justify-center items-center">
                 <p className="text-xl font-semibold">Loading...</p>
             </div>
         );
     }
     return(
-         <div className="h-screen w-screen bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex flex-col justify-center items-center">
-            <h2 className="pb-4 text-2xl font-bold text-blue-500">Password Change</h2>
-            <div  className="min-h-64 min-w-[45%] bg-white flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                 <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray gap-2">
+         <div className="h-screen w-screen bg-gray-100 flex flex-col justify-center items-center">
+            <h2 className="pb-4 text-2xl font-bold text-gray-700">Password Change</h2>
+            <div  className="min-h-64 min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                 <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray-900 gap-2">
                     <label>Old Password</label>
-                    <input type="password" onChange={handleChange} name="oldPassword" value={passwordData.oldPassword} required className="border-blue-300 border-2 p-1"></input>
+                    <input type="password" onChange={handleChange} name="oldPassword" value={passwordData.oldPassword} required className="border-gray-300 border-2 p-1"></input>
                     <label>New Password</label>
-                    <input type="password" onChange={handleChange} name="newPassword" value={passwordData.newPassword} className="border-blue-300 border-2 p-1"></input>
+                    <input type="password" onChange={handleChange} name="newPassword" value={passwordData.newPassword} className="border-gray-300 border-2 p-1"></input>
                     <label>Confirm New Password</label>
-                    <input type="password" onChange={handleChange} name="confirmPassword" value={passwordData.confirmPassword} className="border-blue-300 border-2 p-1"></input>
-                    <button type="submit"  className="mt-2 m-auto min-w-[33%] h-8 bg-blue-500  text-white md:font-medium font-semibold rounded-md shadow-md transition-all">Change Password</button>
+                    <input type="password" onChange={handleChange} name="confirmPassword" value={passwordData.confirmPassword} className="border-gray-300 border-2 p-1"></input>
+                    <button type="submit"  className="mt-2 m-auto min-w-[33%] h-8 bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4] text-white md:font-medium font-semibold rounded-md shadow-md transition-all">Change Password</button>
                     
 
 
                  </form>
-                  <p className="m-auto mb-4 text-2xl font-bold text-blue-600">{message}</p>
+                  <p className="m-auto mb-4 text-2xl font-bold text-gray-700">{message}</p>
 
 
 

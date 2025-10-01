@@ -11,8 +11,8 @@ function BrowseJobs(){
 
     const [jobs,setJobs]=useState("")
     const handleApply=(jobId)=>{
-      localStorage.setItem("selectedJobId",jobId);
-      return navigate('/apply')
+      
+      return navigate(`/apply?jobId=${jobId}`);
     }
     
 
@@ -64,16 +64,16 @@ function BrowseJobs(){
    
    
    return (
-  <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center px-4 py-8">
+  <div className="min-h-screen w-full bg-gray-100 flex justify-center px-4 py-8">
     {jobs.length === 0 ? (
       <div>
-        <h3 className="pt-32 text-center font-semibold text-blue-600 text-2xl md:text-4xl">
+        <h3 className="pt-32 text-center font-semibold text-gray-700 text-2xl md:text-4xl">
           No Jobs Found Matching Your Skills
         </h3>
       </div>
     ) : (
       <div className="w-full max-w-7xl flex flex-col items-center gap-y-12">
-        <h2 className="text-xl md:text-2xl font-bold text-blue-500">Available Jobs</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-700">Available Jobs</h2>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {jobs.map((job, index) => (
@@ -115,7 +115,7 @@ function BrowseJobs(){
                   <span className="text-sm font-semibold text-gray-800 mt-2">{job.jobtype}</span>
                 </div>
 
-                {/* Location */}
+              
                 <div className="text-sm font-semibold text-gray-800">
                   <p>{job.locationtype}</p>
                   {job.locationtype === 'On-Site' && <p>{job.location}</p>}
@@ -124,7 +124,7 @@ function BrowseJobs(){
 
               
               <div className="w-full flex justify-center">
-                <button  className="px-4 py-1 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 transition" onClick={()=>handleApply(job._id)} >
+                <button  className="px-4 py-1 text-sm font-semibold text-white bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4]   rounded hover:bg-blue-700 transition" onClick={()=>handleApply(job._id)} >
                   Apply
                 </button>
               </div>

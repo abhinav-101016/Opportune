@@ -1,5 +1,22 @@
 import mongoose, { model, Schema } from "mongoose";
 const applicationSchema =new mongoose.Schema({
+
+    "name":{
+        type:String,
+        required:true
+
+    },
+    "experience":{
+        type:String,
+        required:true
+
+    },
+
+    "skills":{
+        
+       type: [String] 
+
+    },
     "jobId":{
         type:mongoose.Schema.Types.ObjectId,
         ref:"JobData",

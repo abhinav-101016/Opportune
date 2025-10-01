@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useSearchParams} from "react-router-dom";
+
+
 
 const Apply = () => {
   const navigate = useNavigate();
+   const [searchParams] = useSearchParams();
+  const jobId = searchParams.get("jobId");
 
   useEffect(() => {
     const token = localStorage.getItem("webtoken");
@@ -13,10 +17,11 @@ const Apply = () => {
   }, [navigate]);
 
   const [fullData, setFullData] = useState({});
-  const jobId = localStorage.getItem("selectedJobId");
+  ;
   const token = localStorage.getItem("webtoken");
   const decodedData = jwtDecode(token);
   const personId = decodedData.id;
+
 
   const [formData, setFormData] = useState({
     jobId: jobId,
@@ -39,7 +44,7 @@ const Apply = () => {
     formDataToSend.append("resume", formData.resume);
     try {
       const token = localStorage.getItem("webtoken");
-      const res = await fetch("http://localhost:1200/applicationsubmitted", {
+      const res = await fetch(`http://localhost:1200/applicationsubmitted`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formDataToSend

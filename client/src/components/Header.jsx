@@ -42,7 +42,7 @@ useEffect(() => {
    
 
     return(
-        <header className="w-[100vw] h-[15vh] bg-gradient-to-r from-blue-200 via-indigo-200 to-purple-200  shadow-lg flex justify-between items-center ">
+        <header className="w-[100vw] h-[15vh] bg-[#03a9f4] shadow-lg flex justify-between items-center hover:shadow-2xl">
             <div className="w-[25vw] h-[100%]   flex justify-center items-center">
                  <img
           src="\images\opportuneLogo.png"alt="Opportune logo"className="h-48 object-contain"/>
@@ -78,8 +78,8 @@ useEffect(() => {
 
 
     {isLoggedIn?<div className={` flex flex-col justify-center items-start gap-2 rounded-lg shadow-md hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out
-      text-[14px]  z-10 ${open ? 'h-80 min-w-32 rounded-md bg-white' : 'min-h-8 min-w-32 bg-radial-[at_45%_50%] from-[#64e7e1] to-[#0db9c5] rounded-md'}`}
-><div className="flex justify-between items-center w-[80%]  my-1 mx-2"><div className="flex flex-col text-gray-700">{name&&<NavLink to='dashboard'>{name.split(" ")[0].toUpperCase()}</NavLink>}
+      text-[14px]  z-10 ${open ? 'h-80 min-w-32 rounded-md bg-[#61c7f7]' : 'min-h-8 min-w-32 bg-[#61c7f7] rounded-md'}`}
+><div className="flex justify-between items-center w-[80%]  my-1 mx-2"><div className="flex flex-col text-gray-800">{name&&<NavLink to='dashboard'>{name.split(" ")[0].toUpperCase()}</NavLink>}
   <p>{role.charAt(0).toUpperCase() + role.slice(1)}</p></div><svg   onClick={()=>{setOpen(prev=>!prev)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={` cursor-pointer size-4 ${open?"rotate-x-180":"rotate-0"}`}>
   <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
 </svg>
