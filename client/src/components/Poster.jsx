@@ -1,5 +1,8 @@
 import { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
 
 function Poster(){
@@ -47,7 +50,7 @@ function Poster(){
      async function handleSubmit(e){
         try {
             e.preventDefault()
-        const res =await fetch('http://localhost:1200/poster',{
+        const res =await fetch('http://localhost:1200/api/auth/poster',{
             method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(posterData)
         })
 
@@ -69,6 +72,14 @@ function Poster(){
 
     return(
     <div className="h-screen w-screen bg-gray-100 flex flex-col justify-center items-center">
+         <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80 pointer-events-none ">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
         <h2 className="pb-4 text-3xl font-medium text-gray-700">Complete Profile</h2>
         <div className="min-h-64 min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300">
             <form onSubmit={handleSubmit} className="flex flex-col p-12 font-medium text-gray-900 gap-4">
@@ -99,7 +110,7 @@ function Poster(){
                      <option value="501-1000">501-1000</option>
                      <option value="1000+">1000+</option>
                 </select>
-                 <button type="submit" className="mt-2 m-auto w-[30%] h-8 bg-gradient-to-r sm:w-[35%] md:h-10 bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4]  text-white font-semibold rounded-md shadow-md transition-all">Submit</button>
+                 <button type="submit" className="mt-2 m-auto w-[30%] h-8  sm:w-[35%] md:h-10 bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4]  text-white font-semibold rounded-md shadow-md transition-all">Submit</button>
 
             </form>
             <p className="m-auto mb-4  font-bold  text:xl sm:text-2xl text-gray-700">{message}</p>

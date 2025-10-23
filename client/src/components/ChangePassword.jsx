@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
 
 function ChangePassword(){
@@ -57,7 +60,7 @@ function ChangePassword(){
             ...passwordData,
             user_id:userId
         }
-        const res=await fetch('http://localhost:1200/changepassword',{
+        const res=await fetch('http://localhost:1200/api/auth/changepassword',{
             method:'PUT',headers:{
                 Authorization: `Bearer ${token}`,
             
@@ -94,6 +97,14 @@ function ChangePassword(){
    if (!isUserLoaded) {
         return (
             <div className="h-screen w-screen bg-gray-100 flex justify-center items-center">
+                 <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
                 <p className="text-xl font-semibold">Loading...</p>
             </div>
         );

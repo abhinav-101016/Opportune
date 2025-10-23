@@ -2,6 +2,9 @@ import { useState,useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../Context/LoginContext";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
 function DeleteProfile(){
     const navigate=useNavigate()
@@ -74,6 +77,14 @@ function DeleteProfile(){
      return(
 
         <div className="h-screen w-screen bg-gray-100 flex flex-col justify-center items-center">
+             <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
             <h2 className="pb-4 text-2xl font-bold text-gray-700">Delete Profile</h2>
             <div className="min-h-64 min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
        

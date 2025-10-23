@@ -1,6 +1,8 @@
 import { useState,useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
 
 
 function JobsPosted(){
@@ -101,6 +103,14 @@ function JobsPosted(){
 
     return(
         <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center px-4 py-8">
+           <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
         <h3 className="pt-32 text-center font-semibold text-blue-600 text-2xl md:text-4xl">{message}</h3>
 
         {postedJobs.length===0?(

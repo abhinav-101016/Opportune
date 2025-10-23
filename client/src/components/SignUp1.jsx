@@ -1,6 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
+
 
 function SignUp1(){
     const navigate=useNavigate()
@@ -19,7 +23,7 @@ function SignUp1(){
     async function handleSubmit(e){
         e.preventDefault();
         try {
-            const res=await fetch('http://localhost:1200/signup',{method:'POST',headers:{
+            const res=await fetch('http://localhost:1200/api/auth/signup',{method:'POST',headers:{
             'Content-Type':'application/json'
         },body:JSON.stringify(formData)}
         )
@@ -63,6 +67,15 @@ function SignUp1(){
     
     
     <div className="h-screen w-screen bg-gray-100 flex flex-col justify-center items-center">
+
+         <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80 pointer-events-none ">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
   <h2 className="pb-5 mt-25 text-3xl font-medium text-gray-700">Sign-Up</h2>
   
   <div className=" sm:min-w-[45%] sm:min-h-68 bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300">

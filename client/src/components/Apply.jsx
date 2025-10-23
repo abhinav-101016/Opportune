@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate , useSearchParams} from "react-router-dom";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
 
 
@@ -78,6 +81,14 @@ const Apply = () => {
 
   return (
     <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center items-center px-4 py-8">
+       <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-6 md:p-10">
         <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2 text-center">Job Application Form</h2>
         <h2 className="text-lg md:text-xl font-semibold mb-8 text-blue-500 text-center">

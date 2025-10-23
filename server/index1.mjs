@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+import { connectDB } from "./config/db.mjs";
 import multer from "multer";
+import cloudinary from "./config/cloudinaryConfig.mjs";
+
 import path from "path";
 import { Router } from "express";
 import bcrypt from 'bcrypt';
@@ -12,6 +15,7 @@ import { Person, Seeker, Poster } from "./models/user1.mjs";
 import JobData from "./models/jobData.mjs";
 import dotenv from "dotenv"
 dotenv.config({path:path.resolve("./server/.env")});
+import authRoutes from "./routes/authRoutes.mjs";
 
 
 
@@ -22,7 +26,7 @@ dotenv.config({path:path.resolve("./server/.env")});
 
 
 const PORT=process.env.PORT||1200;
-const mongo_URL=process.env.MONGODB_URL;
+
 const jwtSecret=process.env.JWT_SECRET;
 const corsOrigin=process.env.CORS_ORIGIN;
 
@@ -32,10 +36,7 @@ const router = express.Router();
 app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json());
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
+const storage =multer.memoryStorage();
 const fileFilter = (req, file, cb) => {
   const allowedtypes = [".pdf", ".doc", ".docx"];
   const ext = path.extname(file.originalname).toLowerCase();
@@ -46,74 +47,20 @@ const upload = multer({ storage, fileFilter });
 app.use("/uploads", express.static("uploads"));
 app.use("/", router);
 
-const mongoURL = mongo_URL;
-await mongoose.connect(mongoURL)
-  .then(() => console.log("Database Connected"))
-  .catch(err => console.error("Can't connect to database", err));
+//DATABASE CONNECTION
+
+
+await connectDB();
+
+
+
 
 app.get('/', (req, res) => res.send("HELLO THERE"));
 
-app.post('/signup', async (req, res) => {
-  try {
-    const { name, email, mob, password, role } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newPerson = new Person({ name, email, mob, password: hashedPassword, role });
-    await newPerson.save();
-    res.status(201).send({ message: "SignUp Successful" });
-  } catch (error) {
-    if (error.code === 11000) {
-      return res.status(400).json({ error: 'Email or mobile already exists' });
-    }
-    res.status(500).json({ error: 'Server error', details: error.message });
-  }
-});
+//AUTHENTICATION ROUTES
 
-app.post('/seeker', async (req, res) => {
-  try {
-    const { email, experience, skills } = req.body;
-    const personData = await Person.findOne({ email: email });
-    if (!personData) return res.status(500).json({ message: 'Something Went Wrong !!' });
-    const { name, role } = personData;
-    if (role === 'seeker') {
-      const newSeeker = new Seeker({ user: personData._id, name, experience: Number(experience), skills });
-      await newSeeker.save();
-      res.status(200).json({ message: 'Profile Completed Successfully' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong', error: error.message });
-  }
-});
+app.use("/api/auth",authRoutes);
 
-app.post('/poster', async (req, res) => {
-  try {
-    const { organisation, position, industry, companySize, email } = req.body;
-    const personData = await Person.findOne({ email: email });
-    if (!personData) return res.status(500).json({ message: 'Something Went Wrong !!' });
-    const { name, role } = personData;
-    if (role === 'poster') {
-      const newPoster = new Poster({ user: personData._id, name, organisation, position, industry, companySize });
-      await newPoster.save();
-      res.status(200).json({ message: "Profile Completed Sucessfully" });
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Something Went Wrong", error: error.message });
-  }
-});
-
-app.post('/login', async (req, res) => {
-  try {
-    const { identifier, password } = req.body;
-    const personData = await Person.findOne({ $or: [{ email: identifier }, { mob: identifier }] });
-    if (!personData) return res.status(400).json({ message: 'No Valid User Found !!' });
-    const isAuthenticated = await bcrypt.compare(password, personData.password);
-    if (!isAuthenticated) return res.status(401).json({ message: "Incorrect Password" });
-    const payload = { id: personData._id, email: personData.email, role: personData.role, name: personData.name };
-    const token = jwt.sign(payload, jwtSecret, { expiresIn: '1h' });
-    res.status(200).json({ message: "Login Successful", token: token });
-  } catch (error) {
-    res.status(500).json({ message: "Something Went Wrong", error: error.message });
-  }
-});
 
 app.post('/postajob', authenticate, async (req, res) => {
   try {
@@ -133,21 +80,6 @@ app.post('/postajob', authenticate, async (req, res) => {
   }
 });
 
-app.put('/changepassword', authenticate, async (req, res) => {
-  const { oldPassword, newPassword, confirmPassword, user_id } = req.body;
-  const personData = await Person.findById(user_id);
-  if (!personData) return res.status(404).json({ message: "User not found" });
-  const isAuthenticated = await bcrypt.compare(oldPassword, personData.password);
-  if (!isAuthenticated) return res.status(401).json({ message: "Password is Incorrect" });
-  if (newPassword === confirmPassword) {
-    const newHashedPassword = await bcrypt.hash(newPassword, 10);
-    personData.password = newHashedPassword;
-    await personData.save();
-    return res.status(200).json({ message: "Password Changed Sucessfully" });
-  } else {
-    return res.status(400).json({ message: "New Passwords do not match" });
-  }
-});
 
 app.get('/dashboard', authenticate, async (req, res) => {
   const userId = req.query.userId;
@@ -213,31 +145,54 @@ app.get('/applydata', authenticate, async (req, res) => {
   return res.status(200).json(jobData);
 });
 
+
+import streamifier from "streamifier";
+
 router.post('/applicationsubmitted', upload.single("resume"), async (req, res) => {
   try {
-    
     if (!req.file) return res.status(400).json({ error: "Resume file is required" });
-    const startimmediately = req.body.startimmediately === "true";
-    const { jobId, personId, whyhire } = req.body;
-    const seekerData=await Seeker.findOne({user:personId});
-    if(!seekerData){
-      return res.status(404).json({message:"Seeker is invalid"});
-    }
 
-     const name = seekerData.name || "";
+    const { jobId, personId, whyhire } = req.body;
+    const seekerData = await Seeker.findOne({ user: personId });
+    if (!seekerData) return res.status(404).json({ message: "Seeker is invalid" });
+
+    const name = seekerData.name || "";
     const experience = seekerData.experience || "";
     const skills = seekerData.skills || [];
 
+    const uploadResume = () => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { folder: "resumes", resource_type: "auto" },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result);
+          }
+        );
+        streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
+      });
+    };
 
-   
-    
-    const ApplicationData = new Application({ name,experience,skills,jobId, personId, whyhire, startimmediately, resume: req.file.path });
+    const result = await uploadResume();
+
+    const ApplicationData = new Application({
+      name,
+      experience,
+      skills,
+      jobId,
+      personId,
+      whyhire,
+      startimmediately: req.body.startimmediately === "true",
+      resume: result.secure_url
+    });
+
     await ApplicationData.save();
-    res.status(201).json({ message: "Application Submitted" });
+    res.status(201).json({ message: "Application Submitted", resumeURL: result.secure_url });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 app.get('/jobsposted',authenticate,async(req,res)=>{
   const userId=req.query.userId;

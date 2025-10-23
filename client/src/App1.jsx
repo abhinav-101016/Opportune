@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import './App.css'
 import Seeker from "./components/Seeker";
 import Poster from "./components/Poster";
-import Home from "./components/home";
+import Home from "./components/Home";
 import Header from "./components/Header";
 import JobPost from "./components/JobPost";
 import { LoginProvider } from "./Context/LoginContext";

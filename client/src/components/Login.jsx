@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode}  from "jwt-decode"; 
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../Context/LoginContext";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
 
 
 function Login(){
@@ -25,7 +27,7 @@ async function handleLogin(e) {
     e.preventDefault();
 
     try {
-        const response = await fetch('http://localhost:1200/login', {
+        const response = await fetch('http://localhost:1200/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData)
@@ -58,6 +60,14 @@ async function handleLogin(e) {
 
     return(
         <div className="h-screen w-screen  flex flex-col justify-center bg-gray-100 items-center bg-cover "  >
+             <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80 pointer-events-none ">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
             <h2 className="pb-4 text-3xl font-medium text-gray-700">Login</h2>
             <div  className="min-h-64 max-w-[55%] sm:min-w-[45%] bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300">
        

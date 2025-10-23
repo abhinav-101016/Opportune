@@ -1,6 +1,9 @@
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
 
 
@@ -216,6 +219,14 @@ function JobPost(){
     )*/
    return (
   <div className="min-h-screen w-full  bg-gray-100 flex flex-col justify-center items-center py-8 px-4">
+     <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
     <h2 className="pb-6 text-3xl font-bold text-gray-700">Create A Job</h2>
     <div className="w-full max-w-3xl  bg-white-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-200 flex flex-col justify-center rounded-md shadow-xl hover:shadow-2xl transition-shadow duration-300">
       <form onSubmit={handleSubmit} className="flex flex-col p-10 gap-y-4 text-gray-900">

@@ -1,6 +1,9 @@
 import { useState,useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate,useSearchParams } from "react-router-dom";
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
 function Applications(){
     const [message,setMessage]=useState("");
@@ -82,6 +85,14 @@ const  handleSubmit=async(id,status)=>{
 
   return (
   <div className="min-h-screen w-full bg-gray-100 flex justify-center px-4 py-8">
+     <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
     {applicationData.length === 0 ? (
       <div>
         <h3 className="pt-32 text-center font-semibold text-gray-700 text-2xl md:text-4xl">
@@ -142,7 +153,7 @@ const  handleSubmit=async(id,status)=>{
              
               <div className="flex justify-between items-center mt-4">
                 <a
-                  href={`http://localhost:1200/${app.resume}`}
+                  href={app.resume}
                   
                   target="_blank"
                   rel="noopener noreferrer"

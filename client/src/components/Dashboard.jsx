@@ -1,6 +1,9 @@
 import { useState,useEffect } from "react"
 import { jwtDecode } from "jwt-decode"
 import { NavLink, useNavigate } from "react-router-dom"
+import Lottie from "lottie-react";
+import BgAnimation from '../animations/bgAni.json'
+
 
  function  Dashboard(){
     const navigate=useNavigate()
@@ -173,6 +176,14 @@ import { NavLink, useNavigate } from "react-router-dom"
 
   
     return(<div className="min-h-screen w-[100vw] bg-gray-100 flex flex-col gap-y-32 justify-center items-center">
+         <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
+          <Lottie 
+            animationData={BgAnimation} 
+            loop 
+            autoplay 
+            style={{ width: '100%', height: '100%',opacity: 0.5 }}
+          />
+        </div>
         <h2 className="mt-[-14px] font-bold text-5xl text-gray-700">Dashboard</h2>
         <h3 className="font-bold text-5xl text-gray-700">{message}</h3>
 
