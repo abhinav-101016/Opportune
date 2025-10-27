@@ -14,7 +14,8 @@ import jwt from "jsonwebtoken";
 import { Person, Seeker, Poster } from "./models/user1.mjs";
 import JobData from "./models/jobData.mjs";
 import dotenv from "dotenv"
-dotenv.config({path:path.resolve("./server/.env")});
+//   only for local environment --   dotenv.config({path:path.resolve("./server/.env")});
+dotenv.config();
 import authRoutes from "./routes/authRoutes.mjs";
 
 
@@ -33,7 +34,8 @@ const corsOrigin=process.env.CORS_ORIGIN;
 const app = express();
 const router = express.Router();
 
-app.use(cors({ origin: corsOrigin, credentials: true }));
+//app.use(cors({ origin: corsOrigin, credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json());
 
 const storage =multer.memoryStorage();
