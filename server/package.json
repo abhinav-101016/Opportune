@@ -1,10 +1,10 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index1.js",
+  "main": "index1.mjs",
   "scripts": {
-    "start": "node index1.js",
-    "dev": "nodemon index1.js"
+    "start": "node index1.mjs",
+    "dev": "nodemon index1.mjs"
   },
   "author": "Abhinav Singh",
   "license": "ISC",
