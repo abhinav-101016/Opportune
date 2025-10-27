@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 
 const SignUp=()=>{
+  const apiUrl = import.meta.env.VITE_API_URL;
+
 const [formData,setFormData]=useState({
     name:'',
 
@@ -17,7 +19,7 @@ const handleChange=(e)=>{
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const res = await fetch('http://localhost:4200/SignUp', {
+    const res = await fetch(`${apiUrl}/SignUp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

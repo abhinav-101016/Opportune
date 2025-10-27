@@ -7,6 +7,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function SignUp1(){
+  const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate=useNavigate()
     const [formData,setFormData]=useState({
         name:'',
@@ -23,7 +25,7 @@ function SignUp1(){
     async function handleSubmit(e){
         e.preventDefault();
         try {
-            const res=await fetch('http://localhost:1200/api/auth/signup',{method:'POST',headers:{
+            const res=await fetch(`${apiUrl}/api/auth/signup`,{method:'POST',headers:{
             'Content-Type':'application/json'
         },body:JSON.stringify(formData)}
         )

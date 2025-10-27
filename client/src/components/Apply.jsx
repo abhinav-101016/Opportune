@@ -8,6 +8,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 const Apply = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
    const [searchParams] = useSearchParams();
   const jobId = searchParams.get("jobId");
@@ -47,7 +49,7 @@ const Apply = () => {
     formDataToSend.append("resume", formData.resume);
     try {
       const token = localStorage.getItem("webtoken");
-      const res = await fetch(`http://localhost:1200/applicationsubmitted`, {
+      const res = await fetch(`${apiUrl}/applicationsubmitted`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formDataToSend
@@ -68,7 +70,7 @@ const Apply = () => {
     const getJobData = async () => {
       const token = localStorage.getItem("webtoken");
       try {
-        const res = await fetch(`http://localhost:1200/applydata?jobId=${jobId}`, {
+        const res = await fetch(`${apiUrl}/applydata?jobId=${jobId}`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }
         });

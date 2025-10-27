@@ -7,6 +7,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function DeleteProfile(){
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate=useNavigate()
 
     const [password,setPassword]=useState('')
@@ -41,7 +43,7 @@ function DeleteProfile(){
         }
         try {
             const token=localStorage.getItem("webtoken")
-             const res=await fetch('http://localhost:1200/deleteprofile',{method:'POST',
+             const res=await fetch(`${apiUrl}/deleteprofile`,{method:'POST',
             headers:{
                 Authorization: `Bearer ${token}`,
             

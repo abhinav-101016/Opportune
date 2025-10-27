@@ -10,6 +10,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function BrowseJobs(){
+  const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate=useNavigate()
 
     const [jobs,setJobs]=useState("")
@@ -40,7 +42,7 @@ function BrowseJobs(){
          try {
          const token=localStorage.getItem("webtoken")
 
-    const res =await fetch('http://localhost:1200/browsejobs',{method:'GET',
+    const res =await fetch(`${apiUrl}/browsejobs`,{method:'GET',
         headers:{
              Authorization: `Bearer ${token}`,
             

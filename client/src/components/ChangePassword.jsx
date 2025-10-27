@@ -7,6 +7,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function ChangePassword(){
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate=useNavigate()
     const token=localStorage.getItem("webtoken")
     const [userId,setUserId]=useState('')
@@ -60,7 +62,7 @@ function ChangePassword(){
             ...passwordData,
             user_id:userId
         }
-        const res=await fetch('http://localhost:1200/api/auth/changepassword',{
+        const res=await fetch(`${apiUrl}/api/auth/changepassword`,{
             method:'PUT',headers:{
                 Authorization: `Bearer ${token}`,
             

@@ -6,6 +6,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
  function  Dashboard(){
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate=useNavigate()
     const [userId,setUserId]=useState('')
     const [message,setMessage]=useState('')
@@ -83,7 +85,7 @@ import BgAnimation from '../animations/bgAni.json'
               try {
 
 
-             const res=await fetch(`http://localhost:1200/dashboard?userId=${userId}`,{
+             const res=await fetch(`${apiUrl}/dashboard?userId=${userId}`,{
             method:'GET',
             headers:{ Authorization: `Bearer ${token}`,
             

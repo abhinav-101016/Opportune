@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+
 import { jwtDecode } from "jwt-decode";
 import { useNavigate,useSearchParams } from "react-router-dom";
 import Lottie from "lottie-react";
@@ -6,6 +7,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function Applications(){
+  const apiUrl = import.meta.env.VITE_API_URL;
+
     const [message,setMessage]=useState("");
     const[applicationData,setApplicationData]=useState([]);
     const navigate=useNavigate();
@@ -28,7 +31,7 @@ function Applications(){
     const getApplications = async () => {
       const token = localStorage.getItem("webtoken");
       try {
-        const res = await fetch(`http://localhost:1200/applications?jobId=${jobId}`, {
+        const res = await fetch(`${apiUrl}/applications?jobId=${jobId}`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }
         });
@@ -50,7 +53,7 @@ function Applications(){
 
 const  handleSubmit=async(id,status)=>{
   const token = localStorage.getItem("webtoken");
-  const res=await fetch(`http://localhost:1200/status?id=${id}`,
+  const res=await fetch(`${apiUrl}/status?id=${id}`,
     {
       method:"PUT",
       headers:{ Authorization: `Bearer ${token}`, "Content-Type": "application/json" },

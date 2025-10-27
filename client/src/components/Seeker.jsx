@@ -5,6 +5,8 @@ import Lottie from "lottie-react";
 import BgAnimation from '../animations/bgAni.json'
 
 function Seeker() {
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate = useNavigate();
     const [message, setMessage] = useState('');
 
@@ -58,7 +60,7 @@ function Seeker() {
         skills: skillsArray
     };
 
-    const res = await fetch('http://localhost:1200/api/auth/seeker', {
+    const res = await fetch(`${apiUrl}/api/auth/seeker`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(finalData)

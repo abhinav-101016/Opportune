@@ -6,6 +6,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function JobsPosted(){
+  const apiUrl = import.meta.env.VITE_API_URL;
+
     const navigate=useNavigate();
 
     const [postedJobs,setPostedJobs]=useState([]);
@@ -40,7 +42,7 @@ function JobsPosted(){
          try {
          const token=localStorage.getItem("webtoken")
 
-    const res =await fetch(`http://localhost:1200/jobsposted?userId=${userId}`,{method:'GET',
+    const res =await fetch(`${apiUrl}/jobsposted?userId=${userId}`,{method:'GET',
         headers:{
              Authorization: `Bearer ${token}`,
             
@@ -70,7 +72,7 @@ function JobsPosted(){
       const confirmDelete = window.confirm("Are you sure you want to delete this job?");
       if (!confirmDelete) return;
       const token=localStorage.getItem("webtoken")
-      const res=await fetch(`http://localhost:1200/deleteJob/${jobId}`,{
+      const res=await fetch(`${apiUrl}/deleteJob/${jobId}`,{
         method:'DELETE',
         headers:{
           Authorization: `Bearer ${token}`,

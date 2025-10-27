@@ -8,6 +8,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function JobPost(){
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   
     const navigate=useNavigate()
    useEffect(() => {
@@ -88,7 +90,7 @@ function JobPost(){
             ...jobData,
             skills: skillsArray
         };
-             const res =await fetch('http://localhost:1200/postajob',
+             const res =await fetch(`${apiUrl}/postajob`,
             {method:'POST'
             ,headers:{
             Authorization: `Bearer ${token}`,

@@ -6,6 +6,8 @@ import BgAnimation from '../animations/bgAni.json'
 
 
 function Poster(){
+    const apiUrl = import.meta.env.VITE_API_URL;
+
 
     const isAllowed=(localStorage.getItem('signupComplete'))
     const isSeeker=(localStorage.getItem('isSeeker'));
@@ -50,7 +52,7 @@ function Poster(){
      async function handleSubmit(e){
         try {
             e.preventDefault()
-        const res =await fetch('http://localhost:1200/api/auth/poster',{
+        const res =await fetch(`${apiUrl}/api/auth/poster`,{
             method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(posterData)
         })
 
