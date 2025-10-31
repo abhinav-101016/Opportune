@@ -160,6 +160,7 @@ const  handleSubmit=async(id,status)=>{
                   
                   target="_blank"
                   rel="noopener noreferrer"
+                  
                   className="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br rounded shadow-md transition"
                 >
                   View Resume

@@ -82,7 +82,7 @@ const Apply = () => {
   }, [jobId]);
 
   return (
-    <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center items-center px-4 py-8">
+    <div className="min-h-screen w-full bg-radial-[at_45%_50%] bg-gray-100 flex justify-center items-center px-4 py-8">
        <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
           <Lottie 
             animationData={BgAnimation} 
@@ -92,31 +92,31 @@ const Apply = () => {
           />
         </div>
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-6 md:p-10">
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2 text-center">Job Application Form</h2>
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mb-2 text-center">Job Application Form</h2>
         <h2 className="text-lg md:text-xl font-semibold mb-8 text-blue-500 text-center">
           <span>{fullData.jobtitle}</span> at <span>{fullData.organisation}</span>
         </h2>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6 text-gray-900" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-gray-700 text-sm md:text-base mb-2">Why should we hire you?</label>
+            <label className="block  text-sm md:text-base mb-2">Why should we hire you?</label>
             <textarea
               name="whyhire"
               required
               value={formData.whyhire}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="w-full border rounded-lg p-3 text-sm md:text-base focus:outline-none focus:ring-1 focus:ring-gray-700"
               rows="4"
               placeholder="Explain why you’re the best fit..."
             />
           </div>
           <div>
-            <label className="block text-gray-700 text-sm md:text-base mb-2">Are you able to start immediately?</label>
+            <label className="block  text-sm md:text-base mb-2">Are you able to start immediately?</label>
             <select
               name="startimmediately"
               required
               value={formData.startimmediately}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="w-full border rounded-lg p-3 text-sm md:text-base focus:outline-none focus:ring-1 focus:ring-gray-700"
             >
               <option value="">Select an option</option>
               <option value="true">Yes</option>
@@ -124,18 +124,18 @@ const Apply = () => {
             </select>
           </div>
           <div>
-            <label className="block text-gray-700 text-sm md:text-base mb-2">Upload Resume</label>
+            <label className="block  text-sm md:text-base mb-2">Upload Resume</label>
             <input
               type="file"
               name="resume"
               accept=".pdf,.doc,.docx"
               required
               onChange={handleFileChange}
-              className="w-full border rounded-lg p-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="w-full border rounded-lg p-3 text-sm md:text-base focus:outline-none  focus:ring-1 focus:ring-gray-700"
             />
           </div>
           <div className="flex justify-center">
-            <button type="submit" className="w-full md:w-auto bg-blue-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition">Submit Application</button>
+            <button type="submit" className="mt-2 m-auto w-[70%] sm:w-[30%] h-10 text-lg bg-gradient-to-r from-[#03a9f4] via-[#3caee3] to-[#0184c1] hover:bg-gradient-to-br focus:ring-2 focus:outline-[#03a9f4] focus:ring-[#76c7ed] dark:focus:ring-[#03a9f4] text-white font-semibold rounded-md shadow-md transition-all">Submit Application</button>
           </div>
         </form>
       </div>

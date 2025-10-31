@@ -10,13 +10,15 @@ import cors from 'cors';
 import express from 'express';
 import authenticate from "./middlewares/Authenticate.mjs";
 import Application from "./models/Applications.mjs";
-import jwt from "jsonwebtoken";
+
 import { Person, Seeker, Poster } from "./models/user1.mjs";
 import JobData from "./models/jobData.mjs";
 import dotenv from "dotenv"
 //   only for local environment --   dotenv.config({path:path.resolve("./server/.env")});
 dotenv.config();
 import authRoutes from "./routes/authRoutes.mjs";
+import seekerApplication from "./routes/seekerApplication.mjs";
+import deleteApplication from "./routes/deleteApplication.mjs";
 
 
 
@@ -165,7 +167,7 @@ router.post('/applicationsubmitted', upload.single("resume"), async (req, res) =
     const uploadResume = () => {
       return new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
-          { folder: "resumes", resource_type: "auto" },
+          { folder: "resumes", resource_type: "raw" },
           (error, result) => {
             if (error) return reject(error);
             resolve(result);
@@ -176,6 +178,8 @@ router.post('/applicationsubmitted', upload.single("resume"), async (req, res) =
     };
 
     const result = await uploadResume();
+    
+   // const resumeURL = result.secure_url.replace("/upload/", "/raw/upload/");
 
     const ApplicationData = new Application({
       name,
@@ -259,6 +263,11 @@ app.put('/status', authenticate, async (req, res) => {
     return res.status(500).json({ message: "Something went wrong", error: error.message });
   }
 });
+
+app.use('/api',seekerApplication);
+app.use('/api',deleteApplication);
+
+
 
 
 

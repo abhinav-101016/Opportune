@@ -104,7 +104,7 @@ function JobsPosted(){
    
 
     return(
-        <div className="min-h-screen w-full bg-radial-[at_45%_50%] from-[#d1e8e7] to-[#0db9c5] flex justify-center px-4 py-8">
+        <div className="min-h-screen w-full bg-gray-100 flex justify-center px-4 py-8">
            <div className="absolute inset-0 z-0 flex flex-1 justify-center items-center opacity-80  pointer-events-none">
           <Lottie 
             animationData={BgAnimation} 
@@ -113,11 +113,11 @@ function JobsPosted(){
             style={{ width: '100%', height: '100%',opacity: 0.5 }}
           />
         </div>
-        <h3 className="pt-32 text-center font-semibold text-blue-600 text-2xl md:text-4xl">{message}</h3>
+        <h3 className="pt-32 text-center font-semibold text-gray-700 text-2xl md:text-4xl">{message}</h3>
 
         {postedJobs.length===0?(
              <div>
-        <h3 className="pt-32 text-center font-semibold text-blue-600 text-2xl md:text-4xl">
+        <h3 className="pt-32 text-center font-semibold text-gray-700 text-2xl md:text-4xl">
           No jobs posted by you
         </h3>
       </div> 
@@ -125,7 +125,7 @@ function JobsPosted(){
         :
         (
         <div  className="w-full max-w-7xl flex flex-col items-center gap-y-12">
-            <h2 className="text-xl md:text-2xl font-bold text-blue-500">Posted Jobs</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-700">Posted Jobs</h2>
 
              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {postedJobs.map((job, index) => (

@@ -81,7 +81,7 @@ function Home(){
        {(token)&&(role==='seeker')&&(<> <button className="px-6 py-3 rounded-lg bg-[#03a9f4] hover:bg-[#0288d1] text-white font-semibold shadow-md transition" onClick={()=>{handleClick('browsejobs')}}>
           Browse Jobs
         </button>
-        <button className="px-6 py-3 rounded-lg border-2 border-white text-white font-semibold hover:bg-white hover:text-[#03a9f4] transition" onClick={()=>{handleClick('signup')}}>
+        <button className="px-6 py-3 rounded-lg border-2 border-white text-white font-semibold hover:bg-white hover:text-[#03a9f4] transition" onClick={()=>{handleClick('seeapplications')}}>
           Jobs Applied
         </button>
        </>)}

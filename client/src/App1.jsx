@@ -18,6 +18,7 @@ import BrowseJobs from "./components/BrowseJobs";
 import Apply from "./components/Apply";
 import JobsPosted from "./components/JobsPosted";
 import Applications from "./components/Applications";
+import SeekerApplications from "./components/SeekerApplications";
 
 
 const App1=()=>{
@@ -52,6 +53,7 @@ const App1=()=>{
                 <Route path="/apply" element={<Apply/>}/>
                 <Route path="/jobsposted" element={<JobsPosted/>}/>
                 <Route path="/applications" element={<Applications/>}/>
+                <Route path="/seeapplications" element={<SeekerApplications/>}/>
                 
             </Routes>
             </LoginProvider>
