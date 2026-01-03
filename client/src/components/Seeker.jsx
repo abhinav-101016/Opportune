@@ -69,7 +69,11 @@ function Seeker() {
     const result = await res.json();
 
     if (res.ok) {
-        setMessage('Profile Completed');
+        setMessage('Profile Completed. Please Login');
+        setTimeout((
+           
+        )=>{ navigate('/login');},1500);
+
     } else {
         setMessage('Something Went Wrong maybe');
         console.log(res);

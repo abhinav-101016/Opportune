@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import BgAnimation from '../animations/bgAni.json'
+import 'react-phone-input-2/lib/style.css'
+import PhoneInput from "react-phone-input-2";
 
 
 
@@ -31,13 +33,15 @@ function SignUp1(){
         )
         const result=await res.json()
         localStorage.setItem('email',formData.email);
-        if(res.ok){
+        if(res.status===201){
+          setMessage(result.message);
             localStorage.setItem('signupComplete', 'true');
+            
             if(formData.role==="seeker"){
                  localStorage.setItem('isSeeker', 'true');
             }
-            //setMessage('SignUp Sucessful! Now Login ')
-            setTimeout(() => {
+            
+            /*setTimeout(() => {
                 if(formData.role==='seeker'){
                     navigate('/seeker-complete-profile');
                 }
@@ -47,6 +51,13 @@ function SignUp1(){
                 }
                 
                 
+            }, 500);
+            */
+
+            setTimeout(() => {
+                
+                    navigate('/verify-email'); 
+           
             }, 500);
             
             setFormData({name:'',email:'',mob:'',password:''})
@@ -59,7 +70,7 @@ function SignUp1(){
             
         } catch (error) {
             console.error(error);
-            setMessage('Server error. Try again later.');    
+            setMessage('Server error. Try again later !');    
         }
         
         
@@ -90,8 +101,15 @@ function SignUp1(){
       <input type="email" onChange={handleChange} value={formData.email} name="email" required className="border-gray-400 border-1 p-1 rounded" />
       
       <label>Mob no</label>
-      <input type="tel" onChange={handleChange} value={formData.mob} name="mob" required className="border-gray-400 border-1 p-1 rounded" />
-      
+     <PhoneInput country={'in'}
+     value={formData.mob}
+     onChange={(value)=>setFormData({...formData,mob:value})}
+     inputClass="border-gray-400 border-1 p-1 rounded"
+     enableSearch={true}
+     disableDropdown={false}
+    
+     
+     />
       <label>Password</label>
       <input type="password" onChange={handleChange} value={formData.password} name="password" required className="border-gray-400 border-1 p-1 rounded" />
       

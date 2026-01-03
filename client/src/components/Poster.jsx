@@ -57,7 +57,10 @@ function Poster(){
         })
 
         if(res.ok){
-            setMessage("Profile Completed Sucessfully")
+             setMessage('Profile Completed. Please Login');
+        setTimeout((
+           
+        )=>{ navigate('/login');},1500);
         }
         else{
             setMessage("Something Went Wrong")

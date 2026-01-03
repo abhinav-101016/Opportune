@@ -4,8 +4,11 @@ import mongoose from "mongoose";
 
 const userSchema=new mongoose.Schema({
     "name":{type:String,required:true,trim:true},
-    "email":{type:String,required:true,trim:true,match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,lowercase:true,unique:true},
-    "mob":{type:String,required:true,trim:true,unique:true,match:/^[6-9]\d{9}$/},
+    "email":{type:String,required:true,trim:true,lowercase:true,unique:true},
+    "emailVerified":{type:Boolean,default:false},
+    "otp":String,
+    "otpExpires":Date,
+    "mob":{type:String,required:true,trim:true,unique:true},
     "password":{type:String,required:true,trim:true,minLength:8},
     "role":{type:String,required:true,enum: ['seeker', 'poster']},
     
@@ -22,7 +25,6 @@ const seekerSchema=new mongoose.Schema({
      "user": { type: mongoose.Schema.Types.ObjectId, ref: 'Person', required: true, unique: true },
     "experience":{type:Number,min: 0,max: 50,required:true},
     "skills":{type:[String],required:true, default:[]},
-
 
 })
 

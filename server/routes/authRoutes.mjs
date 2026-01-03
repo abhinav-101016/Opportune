@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import authenticate from "../middlewares/Authenticate.mjs";
 import { Person,Seeker, Poster  } from "../models/user1.mjs";
-
-const router =Router();
+import { sendEmail } from "../utils/sendEmail.mjs";
+const router=Router();
 
 
 
@@ -12,17 +12,63 @@ const router =Router();
 router.post('/signup', async (req, res) => {
   try {
     const { name, email, mob, password, role } = req.body;
+
+    const existingUser = await Person.findOne({ $or: [{ email }, { mob }] });
+    if (existingUser)
+      return res.status(400).json({ message: "Email or mobile already exists" });
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newPerson = new Person({ name, email, mob, password: hashedPassword, role });
+
+    const otp=Math.floor(100000+Math.random()*900000).toString();
+    const otpExpires=Date.now()+10*60*1000;
+
+    const newPerson = new Person({ name, email, mob, password: hashedPassword, role,otp,otpExpires,emailVerified:false });
+
     await newPerson.save();
-    res.status(201).send({ message: "SignUp Successful" });
+    const message = `Hi ${name},\n\nYour verification code is: ${otp}\n\nIt expires in 10 minutes.`;
+
+
+   await sendEmail(email, "Verify your email - Opportune", message);
+    res.status(201).send({ message: " Please verify OTP sent to your email." });
   } catch (error) {
-    if (error.code === 11000) {
-      return res.status(400).json({ error: 'Email or mobile already exists' });
-    }
+
     res.status(500).json({ error: 'Server error', details: error.message });
   }
 });
+
+
+router.post('/verify',async(req,res)=>{
+  try{
+    const {email,otp}=req.body;
+    const personData=await Person.findOne({email});
+    if(!personData){
+      return res.status(404).json({message:"User not found"})
+    }
+    if(personData.otp!==otp.toString()){
+      return res.status(400).json({ message: "Invalid OTP try again!" });
+    }
+
+    if(personData.otpExpires<Date.now()){
+      return res.status(400).json({ message: "OTP expired" });
+
+    }
+    personData.emailVerified=true;
+    personData.otp=undefined;
+    personData.otpExpires=undefined ;
+
+    await personData.save();
+
+
+
+    return res.status(200).json({message:"Email verified successfully!"});
+    
+
+  }
+  catch(error){
+    res.status(500).json({message:"Error verifying OTP"});
+   
+}
+}
+)
 
 
 
@@ -38,6 +84,7 @@ router.post('/seeker', async (req, res) => {
       res.status(200).json({ message: 'Profile Completed Successfully' });
     }
   } catch (error) {
+
     res.status(500).json({ message: 'Something went wrong', error: error.message });
   }
 });
