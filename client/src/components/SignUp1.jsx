@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import BgAnimation from '../animations/bgAni.json'
-import 'react-phone-input-2/lib/style.css'
+import 'react-phone-input-2/dist/style.css'
 import PhoneInput from "react-phone-input-2";
 
 
